@@ -4,15 +4,18 @@ class_name Player
 
 onready var bullet = preload("res://Scenes/Player/Projectile.tscn")
 onready var crosshair = $Crosshair
+onready var lifeBar = $ProgressBar
 onready var level = get_parent()
+onready var camera = level.get_node("Camera2D")
+onready var l_limit = level.get_node("Camera2D/L")
 
 
 const gravity = 0.5
 const terminal_v = 10
-const acceleration = 0.25
+const acceleration = 0.4
 const braking = 0.15
-const max_speed = 10
-const jump = -12
+const max_speed = 12
+const jump = -13
 
 var mod = 0
 var is_moving = false
@@ -22,8 +25,16 @@ var v_movement = 10
 var true_movement = Vector2(h_movement, v_movement)
 var last_pos = position
 
-var shot_cooldown = 0.3
-var cool_count = 0
+const shot_cooldown = 0.3
+var shot_cool_count = 0
+const dmg_cooldown = 0.4
+var dmg_cool_count = 0
+
+var HP = 100
+
+
+func _ready():
+	lifeBar.value = HP
 
 
 func _physics_process(delta):
@@ -31,8 +42,11 @@ func _physics_process(delta):
 	_input_to_movement()
 	
 	move_and_slide(Vector2(h_movement, v_movement) * 1/delta, Vector2.UP)
-	_get_true_movement(delta)
 	
+	_detect_contact()
+	_detect_squished()
+	
+	_get_true_movement(delta)
 	_handle_cooldowns(delta)
 
 
@@ -98,9 +112,9 @@ func _unhandled_input(event):
 
 
 func _shoot():
-	if (cool_count > 0):
+	if (shot_cool_count > 0):
 		return
-		
+	
 	var instance = bullet.instance()
 	level.add_child(instance)
 	instance.position = position
@@ -108,11 +122,53 @@ func _shoot():
 	instance.speed += true_movement.x/4
 	instance.custom_ready()
 	
-	cool_count = shot_cooldown
+	shot_cool_count = shot_cooldown
+	
+	camera.scare_anta()
 
 
 func _handle_cooldowns(delta):
-	cool_count -= delta
-	cool_count = max(cool_count, 0)
+	shot_cool_count -= delta
+	shot_cool_count = max(shot_cool_count, 0)
+	
+	dmg_cool_count -= delta
+	dmg_cool_count = max(dmg_cool_count, 0)
+
+
+func _detect_contact():
+	var slide_count = get_slide_count()
+	
+	for i in range(slide_count):
+		var col = get_slide_collision(i)
+		
+		if col.collider.get("is_zombi"):
+			_damage()
+
+
+func _detect_squished():
+	if (l_limit.global_position.x > global_position.x):
+		_die()
+
+
+func handle_camera_push(speed):
+	h_movement = speed
+
+
+func _damage():
+	if (dmg_cool_count > 0):
+		return
+		
+	HP -= 20
+	lifeBar.value = HP
+	dmg_cool_count = dmg_cooldown
+	
+	if HP <= 0:
+		_die()
+
+
+func _die():
+	print("die")
+	queue_free()
+
 
 
