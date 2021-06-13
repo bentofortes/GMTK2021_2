@@ -1,0 +1,165 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Scripts/Helpers/level_helper.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Player/Camera2D.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Prefabs/Block.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Prefabs/StreetProper.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Enemies/EnemyContainer.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Prefabs/Victory.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Prefabs/Leash.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Enemies/Zombi.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Prefabs/OneWayBlock.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/Prefabs/OneWayPlatform.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/Prefabs/MainPlatform.tscn" type="PackedScene" id=12]
+
+[node name="Level2" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="StaticWorld" type="Node2D" parent="."]
+
+[node name="Block" parent="StaticWorld" instance=ExtResource( 3 )]
+position = Vector2( 1920, 480 )
+scale = Vector2( 80, 1 )
+
+[node name="OneWayBlock3" parent="StaticWorld" instance=ExtResource( 10 )]
+position = Vector2( 2016, 160 )
+scale = Vector2( 3, 1 )
+
+[node name="OneWayBlock4" parent="StaticWorld" instance=ExtResource( 10 )]
+position = Vector2( 2336, 96 )
+scale = Vector2( 3, 1 )
+
+[node name="OneWayBlock5" parent="StaticWorld" instance=ExtResource( 10 )]
+position = Vector2( 2632, 176 )
+scale = Vector2( 3, 1 )
+
+[node name="OneWayBlock6" parent="StaticWorld" instance=ExtResource( 10 )]
+position = Vector2( 2464, 360 )
+scale = Vector2( 3, 1 )
+
+[node name="OneWayBlock11" parent="StaticWorld" instance=ExtResource( 10 )]
+position = Vector2( 1736, 360 )
+scale = Vector2( 3, 1 )
+
+[node name="OneWayBlock7" parent="StaticWorld" instance=ExtResource( 10 )]
+position = Vector2( 2976, 160 )
+scale = Vector2( 3, 1 )
+
+[node name="OneWayBlock9" parent="StaticWorld" instance=ExtResource( 10 )]
+position = Vector2( 3296, 160 )
+scale = Vector2( 3, 1 )
+
+[node name="OneWayBlock12" parent="StaticWorld" instance=ExtResource( 10 )]
+position = Vector2( 4128, 152 )
+scale = Vector2( 3, 1 )
+
+[node name="OneWayBlock10" parent="StaticWorld" instance=ExtResource( 10 )]
+position = Vector2( 3040, 360 )
+scale = Vector2( 3, 1 )
+
+[node name="OneWayBlock8" parent="StaticWorld" instance=ExtResource( 10 )]
+position = Vector2( 2848, 360 )
+scale = Vector2( 3, 1 )
+
+[node name="MainPlatform" parent="StaticWorld" instance=ExtResource( 12 )]
+position = Vector2( -640, 448 )
+scale = Vector2( 2.13333, 2 )
+region_rect = Rect2( 0, 0, 3000, 30 )
+
+[node name="OneWayPlatform" parent="StaticWorld" instance=ExtResource( 11 )]
+position = Vector2( 1640, 328 )
+scale = Vector2( 2.13333, 2 )
+region_rect = Rect2( 0, 0, 90, 30 )
+
+[node name="OneWayPlatform2" parent="StaticWorld" instance=ExtResource( 11 )]
+position = Vector2( 1920, 128 )
+scale = Vector2( 2.13333, 2 )
+region_rect = Rect2( 0, 0, 90, 30 )
+
+[node name="OneWayPlatform3" parent="StaticWorld" instance=ExtResource( 11 )]
+position = Vector2( 2368, 328 )
+scale = Vector2( 2.13333, 2 )
+region_rect = Rect2( 0, 0, 90, 30 )
+
+[node name="OneWayPlatform4" parent="StaticWorld" instance=ExtResource( 11 )]
+position = Vector2( 2240, 64 )
+scale = Vector2( 2.13333, 2 )
+region_rect = Rect2( 0, 0, 90, 30 )
+
+[node name="OneWayPlatform5" parent="StaticWorld" instance=ExtResource( 11 )]
+position = Vector2( 2536, 144 )
+scale = Vector2( 2.13333, 2 )
+region_rect = Rect2( 0, 0, 90, 30 )
+
+[node name="OneWayPlatform6" parent="StaticWorld" instance=ExtResource( 11 )]
+position = Vector2( 2752, 328 )
+scale = Vector2( 2.13333, 2 )
+region_rect = Rect2( 0, 0, 90, 30 )
+
+[node name="OneWayPlatform7" parent="StaticWorld" instance=ExtResource( 11 )]
+position = Vector2( 2880, 128 )
+scale = Vector2( 2.13333, 2 )
+region_rect = Rect2( 0, 0, 90, 30 )
+
+[node name="OneWayPlatform8" parent="StaticWorld" instance=ExtResource( 11 )]
+position = Vector2( 2944, 328 )
+scale = Vector2( 2.13333, 2 )
+region_rect = Rect2( 0, 0, 90, 30 )
+
+[node name="OneWayPlatform9" parent="StaticWorld" instance=ExtResource( 11 )]
+position = Vector2( 3200, 128 )
+scale = Vector2( 2.13333, 2 )
+region_rect = Rect2( 0, 0, 90, 30 )
+
+[node name="OneWayPlatform10" parent="StaticWorld" instance=ExtResource( 11 )]
+position = Vector2( 4032, 120 )
+scale = Vector2( 2.13333, 2 )
+region_rect = Rect2( 0, 0, 90, 30 )
+
+[node name="Player" parent="." instance=ExtResource( 6 )]
+position = Vector2( 312, 288 )
+
+[node name="Camera2D" parent="." instance=ExtResource( 2 )]
+position = Vector2( -808, -712 )
+
+[node name="EnemyContainer" parent="." instance=ExtResource( 5 )]
+
+[node name="Zombi" parent="EnemyContainer" instance=ExtResource( 9 )]
+position = Vector2( 2024, 64 )
+
+[node name="Zombi3" parent="EnemyContainer" instance=ExtResource( 9 )]
+position = Vector2( 2328, 0 )
+
+[node name="Zombi5" parent="EnemyContainer" instance=ExtResource( 9 )]
+position = Vector2( 2632, 80 )
+
+[node name="Zombi6" parent="EnemyContainer" instance=ExtResource( 9 )]
+position = Vector2( 2464, 272 )
+
+[node name="Zombi7" parent="EnemyContainer" instance=ExtResource( 9 )]
+position = Vector2( 2984, 72 )
+
+[node name="Zombi8" parent="EnemyContainer" instance=ExtResource( 9 )]
+position = Vector2( 2864, 264 )
+
+[node name="Zombi9" parent="EnemyContainer" instance=ExtResource( 9 )]
+position = Vector2( 3296, 72 )
+
+[node name="Zombi11" parent="EnemyContainer" instance=ExtResource( 9 )]
+position = Vector2( 4136, 64 )
+
+[node name="Zombi12" parent="EnemyContainer" instance=ExtResource( 9 )]
+position = Vector2( 4216, 384 )
+
+[node name="Zombi10" parent="EnemyContainer" instance=ExtResource( 9 )]
+position = Vector2( 3056, 272 )
+
+[node name="Victory" parent="." instance=ExtResource( 7 )]
+position = Vector2( 4352, 288 )
+
+[node name="Leash" parent="." instance=ExtResource( 8 )]
+
+[node name="StreetProper" parent="." instance=ExtResource( 4 )]
+position = Vector2( 3000, 592 )
+region_rect = Rect2( 0, 0, 30000, 40 )

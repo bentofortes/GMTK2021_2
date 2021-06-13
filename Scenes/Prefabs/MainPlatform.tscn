@@ -4,6 +4,7 @@
 
 [node name="MainPlatform" type="Sprite"]
 scale = Vector2( 2, 2 )
+z_index = -20
 texture = ExtResource( 1 )
 centered = false
 region_enabled = true

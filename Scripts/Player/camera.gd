@@ -41,6 +41,7 @@ func _physics_process(delta):
 	_detect_player_push()
 	
 	stress_level -= 0.12
+	stress_level = max(stress_level, 0)
 	stress_bar.value = stress_level
 	
 	_handle_stress_level()
@@ -56,13 +57,13 @@ func _detect_player_push():
 
 func _force_calm_mode():
 	set_physics_process(true)
-	speed = 5
+	speed = 6
 	state = states.calm
 
 
 func _force_pissed_mode():
 	set_physics_process(true)
-	speed = 7
+	speed = 8
 	state = states.pissed
 
 
@@ -72,18 +73,17 @@ func _force_miss_input_mode():
 	state = states.miss_input
 
 
-func _force_stopped_mode():
+func force_stopped_mode():
 	set_physics_process(false)
 	speed = 0
 	state = states.stopped
 
 
 func scare_anta():
-	stress_level += 20
+	stress_level += 18
 	stress_bar.value = stress_level
-	
-	if (stress_level > 120): stress_level = 120
-	
+	stress_level = min(stress_level, max_stress)
+
 
 func _handle_stress_level():
 	_force_calm_mode()
@@ -106,7 +106,7 @@ func lose():
 	
 	
 func win():
-	_force_stopped_mode()
+	force_stopped_mode()
 	
 #	var timer = Timer.new()
 #	add_child(timer)

@@ -28,6 +28,7 @@ margin_top = 288.0
 margin_right = 256.0
 margin_bottom = 370.0
 custom_fonts/font = ExtResource( 1 )
+disabled = true
 text = "1"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -41,18 +42,6 @@ margin_bottom = 482.0
 custom_fonts/font = ExtResource( 1 )
 disabled = true
 text = "2"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Level3" type="Button" parent="."]
-margin_left = 128.0
-margin_top = 512.0
-margin_right = 256.0
-margin_bottom = 594.0
-custom_fonts/font = ExtResource( 1 )
-disabled = true
-text = "3"
 __meta__ = {
 "_edit_use_anchors_": false
 }

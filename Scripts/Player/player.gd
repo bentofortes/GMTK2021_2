@@ -7,7 +7,9 @@ onready var crosshair = $Crosshair
 onready var lifeBar = $ProgressBar
 onready var level = get_parent()
 onready var camera = level.get_node("Camera2D")
+onready var anta = camera.get_node("Anta")
 onready var l_limit = level.get_node("Camera2D/L")
+onready var leash :Line2D = level.get_node("Leash")
 
 
 const gravity = 0.5
@@ -30,7 +32,7 @@ var victory = false
 
 const shot_cooldown = 0.2
 var shot_cool_count = 0
-const dmg_cooldown = 0.4
+const dmg_cooldown = 0.25
 var dmg_cool_count = 0
 
 var HP = 100
@@ -38,6 +40,9 @@ var HP = 100
 
 func _ready():
 	lifeBar.value = HP
+	leash.clear_points()
+	leash.add_point(anta.global_position)
+	leash.add_point(global_position)
 
 
 func _physics_process(delta):
@@ -51,6 +56,10 @@ func _physics_process(delta):
 	
 	_get_true_movement(delta)
 	_handle_cooldowns(delta)
+	
+	leash.clear_points()
+	leash.add_point(anta.global_position + Vector2(440, 210))
+	leash.add_point(global_position + Vector2(-28, 20))
 
 
 func _get_movement_input():
@@ -122,6 +131,8 @@ func _shoot():
 	if (shot_cool_count > 0):
 		return
 	
+	camera.scare_anta()
+	
 	var instance = bullet.instance()
 	level.add_child(instance)
 	instance.position = position
@@ -131,7 +142,7 @@ func _shoot():
 	
 	shot_cool_count = shot_cooldown
 	
-	camera.scare_anta()
+	
 
 
 func _handle_cooldowns(delta):
@@ -178,19 +189,32 @@ func _damage():
 
 func _die():
 	level.lose()
-	click_to_continue = true
 	victory = false
-	set_physics_process(false)
-#	queue_free()
+
+#	var timer = Timer.new()
+#	add_child(timer)
+#	timer.wait_time = 1
+#	timer.connect("timeout", self, "_on_timeout")
+#	timer.start()
 
 
 func _win():
+	if victory:
+		return
+		
 	level.win()
-	click_to_continue = true
 	victory = true
-	set_physics_process(false)
 
-
+#	var timer = Timer.new()
+#	add_child(timer)
+#	timer.wait_time = 1
+#	timer.connect("timeout", self, "_on_timeout")
+#	timer.start()
+#
+#
+#func _on_timeout():
+#	click_to_continue = true
+#	set_physics_process(false)
 
 
 

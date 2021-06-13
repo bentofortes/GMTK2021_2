@@ -4,11 +4,14 @@ extends KinematicBody2D
 onready var visibility = $VisibilityNotifier2D
 onready var area = $Area2D
 var is_visible = false
+var has_been_visible = false
 var is_zombi = true
 
 const gravity = 0.5
 const terminal_v = 10
 var fall_speed = gravity
+
+var speed = rand_range(-3, -6)
 
 
 func _ready():
@@ -46,10 +49,13 @@ func die():
 func _detect_visibility():
 	if visibility.is_on_screen():
 		is_visible = true
+		has_been_visible = true
 		
 	else:
 		is_visible = false
-
+		
+		if has_been_visible:
+			die()
 
 func _move(delta):
 	if !is_visible:
@@ -64,6 +70,6 @@ func _move(delta):
 		
 #	global_position.x -= 3
 #	global_position.y += 2
-	move_and_slide(Vector2(-3, fall_speed) * 1/delta)
+	move_and_slide(Vector2(speed, fall_speed) * 1/delta)
 	
 	

@@ -21,12 +21,17 @@ _global_script_class_icons={
 [application]
 
 config/name="Gmtk 2021 2"
-run/main_scene="res://Scenes/Levels/TestLevel.tscn"
+run/main_scene="res://Scenes/Menu.tscn"
 config/icon="res://Sprites/icon.png"
 
 [autoload]
 
 Global="*res://Scripts/Global/global.gd"
+
+[display]
+
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
 
 [input]
 

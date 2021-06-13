@@ -1,0 +1,6 @@
+[gd_scene format=2]
+
+[node name="Leash" type="Line2D"]
+z_index = -15
+width = 6.0
+default_color = Color( 1, 0.960784, 0, 1 )
