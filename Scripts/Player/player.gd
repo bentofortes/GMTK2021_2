@@ -25,7 +25,10 @@ var v_movement = 10
 var true_movement = Vector2(h_movement, v_movement)
 var last_pos = position
 
-const shot_cooldown = 0.3
+var click_to_continue = false
+var victory = false
+
+const shot_cooldown = 0.2
 var shot_cool_count = 0
 const dmg_cooldown = 0.4
 var dmg_cool_count = 0
@@ -102,6 +105,10 @@ func _get_true_movement(delta):
 
 
 func _unhandled_input(event):
+	if click_to_continue:
+		if !(event is InputEventMouseMotion):
+			level.click_to_continue(victory)
+	
 	if (
 		!Input.is_action_pressed("l_click")
 	):
@@ -143,6 +150,9 @@ func _detect_contact():
 		
 		if col.collider.get("is_zombi"):
 			_damage()
+			
+		if col.collider.name == "Victory":
+			_win()
 
 
 func _detect_squished():
@@ -167,8 +177,20 @@ func _damage():
 
 
 func _die():
-	print("die")
-	queue_free()
+	level.lose()
+	click_to_continue = true
+	victory = false
+	set_physics_process(false)
+#	queue_free()
+
+
+func _win():
+	level.win()
+	click_to_continue = true
+	victory = true
+	set_physics_process(false)
+
+
 
 
 

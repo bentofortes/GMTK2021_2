@@ -1,4 +1,4 @@
-extends Area2D
+extends KinematicBody2D
 
 
 onready var visibility = $VisibilityNotifier2D
@@ -21,7 +21,13 @@ func custom_ready():
 
 
 func _physics_process(delta):
-	global_position += direction * speed
+#	global_position += direction * speed
+	var col = move_and_collide(direction * speed)
+	if col:
+		if col.collider.get("is_zombi"):
+			col.collider.die()
+			_explode()
+	
 	_detect_visibility()
 	_exit_screen()
 
@@ -39,6 +45,6 @@ func _exit_screen():
 		self.queue_free()
 
 
-func explode():
+func _explode():
 	queue_free()
 

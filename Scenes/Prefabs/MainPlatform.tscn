@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Textures/main_platform.tres" type="Texture" id=1]
+
+[node name="MainPlatform" type="Sprite"]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 30, 30 )

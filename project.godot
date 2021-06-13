@@ -24,6 +24,10 @@ config/name="Gmtk 2021 2"
 run/main_scene="res://Scenes/Levels/TestLevel.tscn"
 config/icon="res://Sprites/icon.png"
 
+[autoload]
+
+Global="*res://Scripts/Global/global.gd"
+
 [input]
 
 ui_select={

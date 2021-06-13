@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/Prefabs/Street.tscn" type="PackedScene" id=1]
+
+[node name="StreetDaddy" type="Node2D"]
+
+[node name="Street" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( -328, 592 )
+z_index = -100
+z_as_relative = false
+
+[node name="Street2" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1520, 592 )
+z_index = -100
+z_as_relative = false
+
+[node name="Street3" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 3360, 592 )
+z_index = -100
+z_as_relative = false
+
+[node name="Street4" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 5192, 592 )
+z_index = -100
+z_as_relative = false
+
+[node name="Street5" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 7040, 592 )
+z_index = -100
+z_as_relative = false
+
+[node name="Street6" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 8880, 592 )
+z_index = -100
+z_as_relative = false
+
+[node name="Street7" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 10680, 592 )
+z_index = -100
+z_as_relative = false

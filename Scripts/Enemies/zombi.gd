@@ -6,6 +6,10 @@ onready var area = $Area2D
 var is_visible = false
 var is_zombi = true
 
+const gravity = 0.5
+const terminal_v = 10
+var fall_speed = gravity
+
 
 func _ready():
 	pass
@@ -13,24 +17,24 @@ func _ready():
 
 func _physics_process(delta):
 	_detect_visibility()
-	_detect_hit()
+#	_detect_hit()
 
-	_move()
+	_move(delta)
 
-func _die():
+func die():
 	self.queue_free()
 
 
-func _detect_hit():
-	if !is_visible:
-		return
-		
-	var areas = area.get_overlapping_areas()
-	
-	for a in areas:
-		if a.name == "Projectile":
-			a.explode()
-			_die()
+#func _detect_hit():
+#	if !is_visible:
+#		return
+#
+#	var areas = area.get_overlapping_areas()
+#
+#	for a in areas:
+#		if a.name == "Projectile":
+#			a.explode()
+#			_die()
 
 #	var bodies = area.get_overlapping_bodies()
 #
@@ -47,8 +51,19 @@ func _detect_visibility():
 		is_visible = false
 
 
-func _move():
+func _move(delta):
 	if !is_visible:
 		return
 		
-	global_position.x -= 3
+	if !is_on_floor():
+		fall_speed += gravity
+		fall_speed = min(fall_speed, terminal_v)
+		
+	else:
+		fall_speed = gravity
+		
+#	global_position.x -= 3
+#	global_position.y += 2
+	move_and_slide(Vector2(-3, fall_speed) * 1/delta)
+	
+	

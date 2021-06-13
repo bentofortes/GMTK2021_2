@@ -1,0 +1,5 @@
+[gd_resource type="StreamTexture" format=2]
+
+[resource]
+flags = 2
+load_path = "res://.import/grey_box.png-ad733e5dad5b90061c97842caae3386c.stex"
